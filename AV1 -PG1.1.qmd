@@ -1,0 +1,537 @@
+# **Introducción**
+
+## **Relevancia**
+
+## **Planificación**
+
+## Objetivos
+
+### Objetivo general
+
+Estudiar la relación entre variables epidemiológicas (edad, género, presión arterial diastólica, circunferencia de la cintura) y variables de diagnóstico (glucosa en sangre en ayunas, hemoglobina glicosilada, tiempo posprandial) con la incidencia de diabetes, para identificar patrones estadísticamente significativos que contribuyan a un diagnóstico temprano y preciso.
+
+### **Objetivos específicos**
+
+1.  **Analizar las variables demográficas y su influencia en la diabetes:\
+    **
+
+    -   Evaluar cómo el género y la edad afectan la probabilidad de desarrollar diabetes, identificando los grupos demográficos con mayor riesgo basado en el análisis estadístico.
+
+    -   Comparar los niveles de glucosa estabilizada en ayunas y hemoglobina glicosilada entre los grupos de género y edad para detectar desproporcionalidades significativas.
+
+2.  **Examinar la relación entre los indicadores de laboratorio y el diagnóstico de diabetes:\
+    **
+
+    -   Determinar cómo los niveles de glucosa estabilizada en ayunas (stab.glu) se relacionan con los rangos de prediabetes y diabetes, identificando patrones de riesgo.
+
+    -   Evaluar la correlación entre los niveles de hemoglobina glicosilada (HbA1c) y el tiempo posprandial, con el objetivo de establecer conexiones estadísticas significativas que apoyen la precisión diagnóstica.\
+
+3.  **Estudiar los factores relacionados con la presión arterial y medidas antropométricas:\
+    **
+
+    -   Analizar cómo la presión arterial diastólica influye en el desarrollo de diabetes, explorando su interacción con variables como edad y género para identificar poblaciones más vulnerables.
+
+    -   Relacionar la circunferencia de la cintura como indicador de grasa visceral con las variables de diagnóstico (glucosa en ayunas, hemoglobina glicosilada) para identificar su impacto en la incidencia de diabetes.\
+
+4.  **Estudiar los factores relacionados con la presión arterial y medidas antropométricas:**
+
+    -   Utilizar análisis estadísticos para construir un modelo predictivo que permita estimar la probabilidad de diabetes en función de las variables seleccionadas.
+
+    -   Validar el modelo con los datos disponibles para garantizar su aplicabilidad clínica.\
+
+# Datos
+
+## **Población Objetivo**
+
+## **Tipo de Muestreo**
+
+## **Tratamiento de Datos**
+
+## **Variables**
+
+Las variables seleccionadas han sido clasificadas en dos grupos principales:
+
+-   **Epidemiológicas:\
+    **
+
+    -   **`age`:** Edad del paciente, expresada en años.
+
+    -   **`gender`:** Género del paciente, codificado como 'M' para masculino y 'F' para femenino.
+
+    -   **`bp.1s`:** Primera medición de la presión arterial sistólica, medida en milímetros de mercurio (mmHg).
+
+    -   **`bp.1d`:** Primera medición de la presión arterial diastólica, medida en mmHg.
+
+    -   **`bp.2s`:** Segunda medición de la presión arterial sistólica, medida en mmHg.
+
+    -   **`bp.2d`:** Segunda medición de la presión arterial diastólica, medida en mmHg.
+
+    -   **`waist`:** Circunferencia de la cintura, medida en pulgadas, un indicador clave de grasa visceral.
+
+    -   **`hip`:** Circunferencia de la cadera del paciente, medida en pulgadas.
+
+    -   **`height`:** Altura del paciente, medida en pulgadas.
+
+    -   **`weight`:** Peso del paciente, medido en libras.
+
+    -   **`ratio`**: Relación entre el colesterol total y el colesterol HDL, relevante para factores de riesgo metabólico.
+
+    -   **`location`**: Descripción de ubicación geográfica, útil en estudios de distribución, pero no directamente relacionada con el diagnóstico de diabetes.\
+
+-   **Diagnósticas:**
+
+    -   **`stab.glu`:** Nivel de glucosa estabilizada en ayunas, medida en mg/dL.
+
+    -   **`glyhb`:** Nivel de hemoglobina glicosilada (HbA1c), expresado como un porcentaje.
+
+    -   **`time.ppn`:** Tiempo posprandial, transcurrido desde la última ingesta hasta la prueba, medido en minutos.
+
+    -   **`hdl`**: Nivel de colesterol de lipoproteínas de alta densidad (HDL), conocido como colesterol "bueno", medido en mg/dL.
+
+    -   **`chol`**: Nivel de colesterol total en sangre, medido en mg/dL.\
+
+-   **No Clasificados:**
+
+    -   **`id`:** Identificador único para cada paciente.
+
+    -   **`location`:** Descripción de la ubicación geográfica del paciente.\
+
+**Motivo de la diferenciación**
+
+La separación de variables en categorías epidemiológicas y de diagnóstico se debe a la complementariedad de sus roles en el análisis:
+
+-   **Epidemiológicas:** Permiten identificar factores de riesgo a nivel poblacional, segmentar la muestra en subgrupos y desarrollar estrategias preventivas.
+
+-   **Diagnósticas:** Ofrecen parámetros clínicos específicos para evaluar el estado metabólico individual y confirmar el diagnóstico de diabetes.
+
+Apartir de estos datos utilizaremos y filtraremos los más importantes que nos parecen los siguientes y los clasificariamos en cualitativos y cuantitativos:\
+\
+**Exclusión de los datos no clasificados**
+
+El objetivo principal de nuestro análisis es desarrollar una herramienta efectiva para predecir la diabetes, por lo que hemos decidido excluir ciertas variables que no aportan valor significativo al propósito del estudio. Específicamente:
+
+1.  **Variable `id`:**\
+    Esta variable actúa únicamente como un identificador único para los pacientes y no contribuye a la predicción de la diabetes. Nuestro interés no radica en identificar individuos específicos con la condición, sino en construir una herramienta que pueda generalizar patrones basados en los datos actuales y aplicarlos a una población más amplia.
+
+2.  **Variable `location`:**\
+    Aunque esta variable describe la ubicación geográfica de los pacientes, no resulta relevante para nuestro análisis ya que los datos disponibles solo consideran dos ubicaciones, lo que limita su impacto estadístico. Además, no existe evidencia de que esta variable tenga influencia directa en la probabilidad de que un paciente sea diabético.
+
+Al excluir estas variables, garantizamos que el modelo se enfoque exclusivamente en las características que son predictivas y relevantes para el diagnóstico y la predicción de la diabetes, mejorando así la precisión y la aplicabilidad del análisis.
+
+### **Selección de Variables para el Diagnóstico de la Diabetes**
+
+A partir de la limpieza y análisis de los datos, hemos decidido utilizar las variables que tienen una mayor relación con la predicción de la diabetes. Estas variables no solo incluyen indicadores cuantitativos clave, sino también variables cualitativas derivadas de la categorización de datos numéricos relevantes.\
+
+#### **Variables Cuantitativas**
+
+1.  **Hemoglobina Glicosilada (glyhb):**\
+    La hemoglobina glicosilada (HbA1c) mide el promedio de los niveles de glucosa en sangre durante los últimos 2-3 meses, lo que la convierte en un indicador esencial para evaluar el control glucémico en pacientes con riesgo de diabetes. Con base en los valores de HbA1c, se establecen las siguientes categorías:
+
+    -   **Normal:** HbA1c \< 5.7%
+    -   **Prediabetes:** HbA1c entre 5.7% y 6.4%
+    -   **Diabetes:** HbA1c ≥ 6.5%
+
+2.  **Tiempo Posprandial (time.ppn):**\
+    El tiempo posprandial mide el intervalo entre la última ingesta de alimentos y la realización de la prueba de glucosa. Es importante porque refleja cómo el cuerpo metaboliza la glucosa después de una comida. Con base en este tiempo, los valores de glucosa pueden interpretarse como:
+
+    -   **Normal:** Glucosa posprandial \< 140 mg/dL (después de 2 horas).
+    -   **Alterada:** Glucosa posprandial entre 140 y 199 mg/dL.
+    -   **Diabetes:** Glucosa posprandial ≥ 200 mg/dL.
+
+3.  **Glucosa en Ayunas (stab.glu):**\
+    La glucosa en ayunas es un parámetro estándar para diagnosticar diabetes. Se mide después de un periodo de ayuno (generalmente 8 horas). Según los niveles de glucosa en ayunas, se clasifican los pacientes en:
+
+    -   **Normal:** 70-99 mg/dL.
+    -   **Prediabetes:** 100-125 mg/dL.
+    -   **Diabetes:** ≥ 126 mg/dL.
+
+4.  **Presión Arterial Diastólica (bp.1d):**\
+    La presión arterial diastólica mide la presión en las arterias cuando el corazón está en reposo entre latidos. Es relevante en el contexto de la diabetes, ya que la hipertensión es un factor de riesgo importante para las complicaciones cardiovasculares. Se clasifica como:
+
+    -   **Normal:** \< 80 mmHg.
+    -   **Elevada:** 80-89 mmHg.
+    -   **Hipertensión Etapa 1:** 90-99 mmHg.
+    -   **Hipertensión Etapa 2:** ≥ 100 mmHg.
+
+#### **Variables Cualitativas**
+
+1.  **Género (Gender):** El género es una variable categórica que puede influir en ciertos aspectos metabólicos y en el riesgo de desarrollar diabetes. Para este análisis, los datos han sido uniformados para que los valores posibles sean únicamente:
+
+    -   **F:** Femenino.
+
+    -   **M:** Masculino.
+
+2.  **Clasificación del Índice de Masa Corporal (IMC):** El IMC es una medida que permite evaluar si una persona se encuentra en un rango saludable según su peso y altura. Se calcula dividiendo el peso en kilogramos por la altura en metros al cuadrado (IMC = Peso (libras) \* 703 / Altura pulgadas)\^2). Con base en este valor, se pueden establecer las siguientes categorías:
+
+    -   **Bajo peso:** IMC inferior a 18.5
+
+    -   **Peso normal:** IMC entre 18.5 y 24.9
+
+    -   **Sobrepeso:** IMC entre 25 y 29.9
+
+    -   **Obesidad:** IMC igual o superior a 30\
+
+3.  **Clasificación por Edad (CPE):** La edad es un factor clave en el riesgo de desarrollar diabetes. Para facilitar el análisis, se propone la siguiente segmentación por grupos etarios:
+
+    -   **Niño:** 0 a 14 años
+
+    -   **Joven:** 15 a 24 años
+
+    -   **Adulto:** 25 a 64 años
+
+    -   **Adulto mayor:** 65 años o más\
+
+4.  **Relación Cintura-Cadera (WHR):** La Relación Cintura-Cadera (WHR) es una medida que evalúa la distribución de la grasa corporal y su impacto en el riesgo metabólico. Se calcula dividiendo la circunferencia de la cintura (en pulgadas o centímetros) entre la circunferencia de la cadera, Con base en los valores de la relación cintura-cadera, se pueden establecer las siguientes categorías según el género:
+
+    -   **Bajo riesgo:** WHR ≤ 0.80 para mujeres, WHR ≤ 0.90 para hombres.
+
+    -   **Riesgo moderado:** WHR entre 0.81 y 0.85 para mujeres, WHR entre 0.91 y 0.95 para hombres.
+
+    -   **Alto riesgo:** WHR \> 0.85 para mujeres, WHR \> 0.95 para hombres.\
+
+5.  **Nivel de Hipertensión (NHP):** La presión arterial elevada, especialmente la hipertensión, es un factor de riesgo común asociado a complicaciones metabólicas, incluyendo la diabetes tipo 2. Aunque la presión arterial elevada por sí misma no causa diabetes, existe una **fuerte correlación entre ambas condiciones** debido a factores compartidos como la obesidad, resistencia a la insulina, y el síndrome metabólico. Con base en las mediciones sistólicas (`bp.s`) y diastólicas (`bp.d`), se propone la siguiente clasificación para evaluar la relación entre hipertensión y diabetes:
+
+    -   **Normal:**
+
+        -   Sistólica \< 120 mmHg.
+
+        -   Diastólica \< 80 mmHg.
+
+    -   **Elevada:**
+
+        -   Sistólica entre 120 y 129 mmHg.
+
+        -   Diastólica \< 80 mmHg.
+
+    -   **Hipertensión Etapa 1:**
+
+        -   Sistólica entre 130 y 139 mmHg.
+
+        -   Diastólica entre 80 y 89 mmHg.
+
+    -   **Hipertensión Etapa 2:**
+
+        -   Sistólica ≥ 140 mmHg.
+
+        -   Diastólica ≥ 90 mmHg.
+
+    -   **Crisis hipertensiva:**
+
+        -   Sistólica ≥ 180 mmHg.
+
+        -   Diastólica ≥ 120 mmHg.
+
+## Limpieza
+
+### Política de Manejo de Errores
+
+El primer paso en la limpieza de datos es identificar y manejar los valores atípicos. En este caso, consideraremos como valores atípicos aquellos que sean **incompatibles con la vida**, es decir, valores que, de presentarse en una persona, no serían fisiológicamente posibles. Asumimos que estos valores son producto de errores al ingresar o recopilar la información, por lo que no representan casos reales.
+
+Para garantizar que las demás observaciones sigan siendo útiles, reemplazaremos estos valores atípicos por `NA`. Esto nos permitirá conservar el resto de la información válida en el conjunto de datos, evitando la eliminación completa de observaciones valiosas.
+
+A continuación, se describen las observaciones y criterios para identificar valores atípicos de cada variable de la base de datos:\
+
+**Epidemiológicas**
+
+1.  **`age` (Edad):**
+
+    -   **Imposiblemente bajos:** Edad \< 0 años (no viable).
+
+    -   **Imposiblemente altos:** Edad \> 120 años (incompatible con la vida).
+
+2.  **`gender` (Género):**
+
+    -   **Imposiblemente bajos o altos:** Género distinto a 'M' o 'F' (valores no válidos fuera de estas categorías codificadas).
+
+3.  **`bp.1s` (Presión arterial sistólica, primera medición):**
+
+    -   **Imposiblemente bajos:** Presión sistólica \< 50 mmHg (indicativo de colapso cardiovascular).
+
+    -   **Imposiblemente altos:** Presión sistólica \> 250 mmHg (indicativo de hipertensión severa incompatible sin intervención).
+
+4.  **`bp.1d` (Presión arterial diastólica, primera medición):**
+
+    -   **Imposiblemente bajos:** Presión diastólica \< 40 mmHg (indicativo de hipotensión severa).
+
+    -   **Imposiblemente altos:** Presión diastólica \> 140 mmHg (indicativo de hipertensión severa).
+
+5.  **`bp.2s` (Presión arterial sistólica, segunda medición):**
+
+    -   **Imposiblemente bajos:** Presión sistólica \< 50 mmHg.
+
+    -   **Imposiblemente altos:** Presión sistólica \> 250 mmHg.
+
+6.  **`bp.2d` (Presión arterial diastólica, segunda medición):**
+
+    -   **Imposiblemente bajos:** Presión diastólica \< 40 mmHg.
+
+    -   **Imposiblemente altos:** Presión diastólica \> 140 mmHg.
+
+7.  **`waist` (Circunferencia de la cintura):**
+
+    -   **Imposiblemente bajos:** Cintura \< 20 pulgadas (indicativo de error o desnutrición severa).
+
+    -   **Imposiblemente altos:** Cintura \> 70 pulgadas (indicativo de obesidad severa extrema).
+
+8.  **`hip` (Circunferencia de la cadera):**
+
+    -   **Imposiblemente bajos:** Cadera \< 20 pulgadas.
+
+    -   **Imposiblemente altos:** Cadera \> 80 pulgadas.
+
+9.  **`height` (Altura):**
+
+    -   **Imposiblemente bajos:** Altura \< 48 pulgadas (4 pies, indicativo de enanismo extremo no reportado).
+
+    -   **Imposiblemente altos:** Altura \> 84 pulgadas (7 pies, extremadamente raro).
+
+10. **`weight` (Peso):**
+
+    -   **Imposiblemente bajos:** Peso \< 50 libras (indicativo de desnutrición severa o error).
+
+    -   **Imposiblemente altos:** Peso \> 600 libras (indicativo de obesidad mórbida extrema o error).
+
+11. **`ratio` (Relación colesterol total/HDL):**
+
+    -   **Imposiblemente bajos:** Ratio \< 1.0 (indicativo de error en los datos, ya que el colesterol total no puede ser menor que el HDL).
+
+    -   **Imposiblemente altos:** Ratio \> 20 (indicativo de un desbalance lipídico extremo o error en la medición).
+
+12. **`location` (Ubicación geográfica):**
+
+    -   **Imposiblemente bajos o altos:** Valores inconsistentes con ubicaciones válidas (p. ej., valores numéricos donde se esperan textos, caracteres no válidos).
+
+**Diagnósticas**
+
+1.  **`stab.glu` (Glucosa en ayunas):**
+
+    -   **Imposiblemente bajos:** Glucosa \< 30 mg/dL (indicativo de hipoglucemia severa).
+
+    -   **Imposiblemente altos:** Glucosa \> 500 mg/dL (indicativo de hiperglucemia crítica).
+
+2.  **`glyhb` (Hemoglobina glicosilada):**
+
+    -   **Imposiblemente bajos:** HbA1c \< 2% (indicativo de hipoglucemia severa).
+
+    -   **Imposiblemente altos:** HbA1c \> 20% (indicativo de hiperglucemia extrema).
+
+3.  **`time.ppn` (Tiempo posprandial):**
+
+    -   **Imposiblemente bajos:** Tiempo \< 10 minutos (indicativo de error, ya que no habría suficiente tiempo para la digestión).
+
+    -   **Imposiblemente altos:** Tiempo \> 300 minutos (indicativo de una medición fuera de contexto o error).
+
+4.  **`hdl` (Colesterol HDL):**
+
+    -   **Imposiblemente bajos:** HDL \< 10 mg/dL (indicativo de dislipidemia severa incompatible con la función metabólica normal).
+
+    -   **Imposiblemente altos:** HDL \> 120 mg/dL (extremadamente raro y asociado a errores en la medición).
+
+5.  **`chol` (Colesterol total):**
+
+    -   **Imposiblemente bajos:** Colesterol \< 100 mg/dL (indicativo de desnutrición severa o errores en la medición).
+
+    -   **Imposiblemente altos:** Colesterol \> 500 mg/dL (indicativo de hipercolesterolemia extrema incompatible con la vida prolongada sin intervención).
+
+#### Procedimiento de Limpieza de Datos
+
+A partir de todo lo expuesto anteriormente, procedemos con la limpieza de datos utilizando los siguientes comandos en R, los cuales aseguran la preparación adecuada del conjunto de datos para su análisis y la implementación del modelo de predicción. A continuación, se detallan los pasos del procedimiento:\
+\
+
+```{r}
+## Librarias requeridas para la limpieza
+library(readr)
+
+
+## Carga de la base de datos con sus tipos específicos de variables
+datos_diabetes <- read_csv("diabetes_vf.csv", col_types = "innnnncncnncnnnnnnn")
+
+datos_diabetes -> datos_diabetes_backup
+
+## Se verifica que los datos se encuentren cargados de manera exitosa
+head(datos_diabetes)
+
+## Se verifican los posibles problemas que tenga
+problems(datos_diabetes)
+
+## Reemplazamos los problemas por NA
+
+datos_diabetes[73, 8] <- NA
+datos_diabetes[177, 4] <- NA
+datos_diabetes[189, 3] <- NA
+datos_diabetes[239, 11] <- NA
+datos_diabetes[255, 4] <- NA
+datos_diabetes[256, 2] <- NA
+datos_diabetes[294, 11] <- NA
+datos_diabetes[301, 8] <- NA
+datos_diabetes[330, 2] <- NA
+datos_diabetes[392, 3] <- NA
+
+```
+
+```{r}
+
+##Manejo de Datos Faltantes
+
+## Librería adicional
+library(dplyr)
+
+## Identificamos las filas inservibles (menos del 80% de datos completos)
+filas_inservibles_indices <- which(rowMeans(is.na(datos_diabetes)) >= 0.2)
+
+## Contar cuántas filas serán eliminadas
+length(filas_inservibles_indices)
+
+## Eliminamos las filas inservibles de los datos generales
+datos_diabetes <- datos_diabetes[-filas_inservibles_indices, ]
+
+## Verificamos cuántas filas quedan en datos_diabetes
+nrow(datos_diabetes)
+
+```
+
+```{r}
+## Manejo de Errores
+
+## Para saber exactamente cada nombre de columna
+names(datos_diabetes)
+
+## No se filtra "id", ya que esta ha sido descartada previamente
+
+## Cambiar los valores de "chol" menores que 100 o mayores que 500 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(chol = ifelse(chol < 100 | chol > 500, NA, chol))
+
+## Cambiar los valores de "stab.glu" menores que 30 o mayores que 500 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(stab.glu = ifelse(stab.glu < 30 | stab.glu > 500, NA, stab.glu))
+
+## Cambiar los valores de "hdl" menores que 10 o mayores que 120 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(hdl = ifelse(hdl < 10 | hdl > 120, NA, hdl))
+
+## Cambiar los valores de "ratio" menores que 1 o mayores que 20 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(ratio = ifelse(ratio < 1 | ratio > 20, NA, ratio))
+
+## Cambiar los valores de "glyhb" menores que 1 o mayores que 20 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(glyhb = ifelse(glyhb < 2| glyhb > 20, NA, glyhb))
+
+## No se filtra "location", ya que esta ha sido descartada previamente
+
+## Cambiar los valores de "age" menores que 0 o mayores que 120 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(age = ifelse(age < 0| age > 120, NA, age))
+
+
+
+## Necesitamos ver la cantidad de valores únicos en "genre" para ver si hay un error de tipeo
+
+unique(datos_diabetes$gender)  
+
+##Se verifica que la variable de género contiene únicamente dos valores (F y M), como se indica en el texto. Dado que algunos datos están registrados como female o male, procedemos a convertirlos a los formatos requeridos (F y M).
+
+datos_diabetes$gender[datos_diabetes$gender == "female"] <- "f"
+datos_diabetes$gender[datos_diabetes$gender == "male"] <- "m"
+
+unique(datos_diabetes$gender) 
+
+
+
+## Cambiar los valores de "height" menores que 0 o mayores que 120 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(height = ifelse(height < 48| height > 84, NA, height))
+
+## Cambiar los valores de "weight" menores que 50 o mayores que 600 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(weight = ifelse(weight < 50| weight > 600, NA, weight))
+
+
+
+## Necesitamos ver la cantidad de valores únicos en "frame" para ver si hay un error de tipeo
+
+unique(datos_diabetes$frame)  
+
+##Se verifica que la variable de género contiene únicamente dos valores (small, medium y large), como se indica en el texto. Dado que los datos son correctos los dejamos tal cual
+
+
+
+## Cambiar los valores de "bp.1s" y "bp.2s" menores que 50 o mayores que 250 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(
+    bp.1s = ifelse(bp.1s < 50 | bp.1s > 250, NA, bp.1s),
+    bp.2s = ifelse(bp.2s < 50 | bp.2s > 250, NA, bp.2s)
+  )
+
+## Cambiar los valores de "bp.1d" y "bp.2d" menores que 40 o mayores que 140 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(
+    bp.1d = ifelse(bp.1d < 40 | bp.1d > 140, NA, bp.1d),
+    bp.2d = ifelse(bp.2d < 40 | bp.2d > 140, NA, bp.2d)
+  )
+
+## Cambiar los valores de "waist" menores que 20 o mayores que 70 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(waist = ifelse(waist < 20| waist > 70, NA, waist))
+
+## Cambiar los valores de "hip" menores que 20 o mayores que 80 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(hip = ifelse(hip < 20| hip > 80, NA, hip))
+
+## Cambiar los valores de "time.ppn" menores que 10 o mayores que 300 por NA
+datos_diabetes <- datos_diabetes %>%
+  mutate(time.ppn = ifelse(time.ppn < 10| time.ppn > 300, NA, time.ppn))
+
+## Verificamos cuántas filas quedan en datos_diabetes
+nrow(datos_diabetes)
+
+## Guardamos en otro backup
+datos_diabetes -> datos_diabetes_backup_limpio
+
+```
+
+```{r}
+## Selección de variables que nos ayudaran a tener nuestra variables cuantitativas y cualitativas
+
+
+## Eliminar las columnas especificadas que no nos ayudan a las variables que buscamos
+datos_diabetes <- datos_diabetes %>%
+  select(-id, -chol, -hdl, -ratio, -location, -frame)
+
+
+## Comprobamos que haya eliminado las columnas
+names(datos_diabetes)
+head(datos_diabetes)
+```
+
+```{r}
+## Revisamos que contamos con los datos necesarios
+
+
+
+## Revisamos los casos completos
+sum(complete.cases(datos_diabetes))
+
+## Revisamos que contemos en cada variable con más de 300 observaciones 
+colSums(!is.na(datos_diabetes))
+```
+
+### **Política de Manejo de Datos Faltantes**
+
+Actualmente estamos trabajando con un total de 17 variables, excluyendo las variables `id` y `location`, ya que no son relevantes para el análisis. De estas variables, hemos seleccionado 4 variables cuantitativas y 7 variables cualitativas, que serán posteriormente categorizadas (sin considerar repeticiones). Esto significa que utilizaremos un total de 11 variables para nuestro análisis.
+
+Hemos determinado que, para que una observación sea considerada pertinente, debe contar con al menos datos completos en **8 variables**. Por lo tanto, descartaremos aquellas observaciones que no cumplan con este criterio mínimo, ya que su falta de información limitaría la utilidad del análisis.
+
+Adicionalmente, utilizaremos imputación con valores específicos para manejar los datos faltantes. En los casos en que una observación cumpla con el umbral de 8 variables completas, los datos faltantes restantes serán reemplazados con el valor `NA`. Esto garantizará que estos valores no sean contabilizados en el cálculo de métricas ni en la generación de gráficos, evitando sesgos en los resultados y manteniendo la coherencia del análisis.
+
+Esta estrategia nos permite optimizar la calidad de los datos mientras mantenemos un tamaño de muestra suficiente para realizar un análisis estadísticamente robusto.\
+\
+
+# Análisis Descriptivo
+
+## Organización de Datos
+
+## Medidas de Resumen
+
+# Conclusiones
